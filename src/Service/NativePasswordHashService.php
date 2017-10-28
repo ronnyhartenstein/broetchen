@@ -12,7 +12,7 @@ final class NativePasswordHashService implements PasswordHashService
 
     public function hash(string $password): PasswordHash
     {
-        return PasswordHash::fromString(password_hash($password->toString(), self::DEFAULT_ALGORITHM));
+        return PasswordHash::fromString(password_hash($password, self::DEFAULT_ALGORITHM));
     }
 
     public function isValid(string $password, PasswordHash $passwordHash): bool
