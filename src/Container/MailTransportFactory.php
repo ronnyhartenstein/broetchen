@@ -12,7 +12,6 @@ use Interop\Container\ContainerInterface;
 use InvalidArgumentException;
 use Zend\Mail\Transport\Envelope;
 use Zend\Mail\Transport\Factory;
-use Zend\Mail\Transport\File;
 use Zend\Mail\Transport\Smtp;
 use Zend\Mail\Transport\TransportInterface;
 

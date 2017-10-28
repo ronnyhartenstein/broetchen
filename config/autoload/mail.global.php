@@ -11,6 +11,12 @@ return [
         ],
     ],
 
+    \Zend\ServiceManager\AbstractFactory\ConfigAbstractFactory::class => [
+        \Oqq\Broetchen\Service\TransportMailService::class => [
+            'mail.default',
+        ],
+    ],
+
     'mail' => [
         'transports' => [
             'default' => [
