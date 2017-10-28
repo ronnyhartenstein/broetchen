@@ -18,6 +18,11 @@ final class Password
         return new self($value);
     }
 
+    public function hash(PasswordHashService $hashService): PasswordHash
+    {
+        return $hashService->hash($this->value);
+    }
+
     public function isValid(PasswordHash $passwordHash, PasswordHashService $hashService): bool
     {
         return $hashService->isValid($this->value, $passwordHash);
