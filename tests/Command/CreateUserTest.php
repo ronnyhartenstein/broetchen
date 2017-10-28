@@ -8,7 +8,7 @@ use Oqq\Broetchen\Command\CreateUser;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Oqq\Broetchen\Domain\CreateUser
+ * @covers \Oqq\Broetchen\Command\CreateUser
  */
 final class CreateUserTest extends TestCase
 {
@@ -43,7 +43,7 @@ final class CreateUserTest extends TestCase
     {
         $this->expectException(\Throwable::class);
 
-        EmailAddress::fromString($value);
+        CreateUser::fromArray($value);
     }
 
     public function getInvalidContents(): array
