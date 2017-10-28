@@ -10,8 +10,8 @@ return function (\Zend\Expressive\Application $app) {
 
     $app->pipeRoutingMiddleware();
 
+    $app->pipe(\LosMiddleware\LosCors\CorsMiddleware::class);
     $app->pipe(\Oqq\Broetchen\Middleware\AuthenticationMiddleware::class);
-    $app->pipe(\Tuupola\Middleware\Cors::class);
     $app->pipe(\Zend\Expressive\Middleware\ImplicitHeadMiddleware::class);
     $app->pipe(\Zend\Expressive\Middleware\ImplicitOptionsMiddleware::class);
     $app->pipe(\Zend\Expressive\Helper\UrlHelperMiddleware::class);
