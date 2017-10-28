@@ -9,7 +9,7 @@ return [
         'allowed_headers' => ['Authorization', 'Accept', 'Content-Type'],
         'max_age' => 120,
         'expose_headers' => [],
-        'allowed_credentials' => true,
+        'credentials' => true,
     ],
 
     'dependencies' => [
