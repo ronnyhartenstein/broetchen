@@ -6,9 +6,11 @@ return function (\Zend\Expressive\Application $app) {
     $app->pipe(\Zend\Stratigility\Middleware\OriginalMessages::class);
     $app->pipe(\Zend\Stratigility\Middleware\ErrorHandler::class);
     $app->pipe(\Zend\Expressive\Helper\ServerUrlMiddleware::class);
+    $app->pipe(\PSR7Sessions\Storageless\Http\SessionMiddleware::class);
 
     $app->pipeRoutingMiddleware();
 
+    $app->pipe(\Oqq\Broetchen\Middleware\AuthenticationMiddleware::class);
     $app->pipe(\Zend\Expressive\Middleware\ImplicitHeadMiddleware::class);
     $app->pipe(\Zend\Expressive\Middleware\ImplicitOptionsMiddleware::class);
     $app->pipe(\Zend\Expressive\Helper\UrlHelperMiddleware::class);

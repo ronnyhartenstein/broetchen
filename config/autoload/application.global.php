@@ -15,11 +15,23 @@ return [
         'aliases' => [
         ],
         'factories' => [
+            \Oqq\Broetchen\Middleware\JsonCommandMiddleware::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
         ],
     ],
 
     \Zend\ServiceManager\AbstractFactory\ConfigAbstractFactory::class => [
         \Oqq\Broetchen\Middleware\PingMiddleware::class => [
+            \Zend\Expressive\Hal\ResourceGenerator::class,
+            \Zend\Expressive\Hal\HalResponseFactory::class,
+        ],
+        \Oqq\Broetchen\Middleware\LoginMiddleware::class => [
+            \Oqq\Broetchen\Service\UserServiceInterface::class,
+        ],
+        \Oqq\Broetchen\Middleware\AuthenticationMiddleware::class => [
+            \Oqq\Broetchen\Service\UserServiceInterface::class,
+        ],
+        \Oqq\Broetchen\Middleware\UserDataMiddleware::class => [
+            \Oqq\Broetchen\Service\UserServiceInterface::class,
             \Zend\Expressive\Hal\ResourceGenerator::class,
             \Zend\Expressive\Hal\HalResponseFactory::class,
         ],
