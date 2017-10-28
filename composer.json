@@ -2,11 +2,20 @@
     "name": "oqq/broetchen",
     "license": "MIT",
     "description": "",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/xtreamwayz/psr7-sessions-storageless"
+        }
+    ],
     "require": {
         "php": "^7.1",
+        "beberlei/assert": "^2.7",
         "http-interop/http-middleware": "^0.4.0",
         "psr/container": "^1.0",
         "psr/http-message": "^1.0",
+        "psr7-sessions/storageless": "dev-feature/psr-http-middleware",
+        "sandrokeil/interop-config": "^2.1",
         "zendframework/zend-config-aggregator": "^1.0",
         "zendframework/zend-expressive": "^2.0",
         "zendframework/zend-expressive-fastroute": "^2.1",
