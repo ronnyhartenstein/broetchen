@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Oqq\Broetchen\Command;
 
 use Assert\Assertion;
+use Oqq\Broetchen\Domain\City;
+use Oqq\Broetchen\Domain\Postcode;
+use Oqq\Broetchen\Domain\Username;
 use Oqq\Broetchen\Domain\EmailAddress;
 
 final class CreateUser
@@ -18,12 +21,12 @@ final class CreateUser
     {
         Assertion::choicesNotEmpty($values, ['email_address', 'username', 'post_code', 'city']);
 
-        $city = EmailAddress::fromString($values['city']);
+        $city = City::fromString($values['city']);
         $emailAddress = EmailAddress::fromString($values['email_address']);
-        $postlcode = EmailAddress::fromString($values['post_code']);
-        $username = EmailAddress::fromString($values['username']);
+        $postCode = Postcode::fromString($values['post_code']);
+        $username = Username::fromString($values['username']);
 
-        return new self($emailAddress);
+        return new self($emailAddress, $username, $postCode, $city);
     }
 
     public function emailAddress(): EmailAddress
@@ -56,8 +59,11 @@ final class CreateUser
         ];
     }
 
-    private function __construct(EmailAddress $emailAddress, string $username, string $postlcode, string $city)
+    private function __construct(EmailAddress $emailAddress, Username $username, Postcode $postcode, City $city)
     {
         $this->emailAddress = $emailAddress;
+        $this->city = $city;
+        $this->username = $username;
+        $this->postCode = $postcode;
     }
 }

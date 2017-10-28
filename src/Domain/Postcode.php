@@ -14,7 +14,7 @@ final class Postcode
     {
         Assertion::notBlank($value);
         Assertion::length($value, 5);
-        Assertion::nummeric($value);
+        Assertion::numeric($value);
 
         return new self($value);
     }
