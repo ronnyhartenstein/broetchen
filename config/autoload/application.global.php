@@ -16,6 +16,7 @@ return [
         ],
         'factories' => [
             \Oqq\Broetchen\Middleware\JsonCommandMiddleware::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
+            \Tuupola\Middleware\Cors::class => \Oqq\Broetchen\Container\CorsMiddlewareFactory::class,
         ],
     ],
 

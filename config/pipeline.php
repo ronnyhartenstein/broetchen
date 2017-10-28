@@ -16,6 +16,7 @@ return function (\Zend\Expressive\Application $app) {
     $app->pipe(\Zend\Expressive\Helper\UrlHelperMiddleware::class);
     $app->pipe(\Zend\Expressive\Helper\BodyParams\BodyParamsMiddleware::class);
 
+    $app->pipe('/api', \Tuupola\Middleware\Cors::class);
     $app->pipe('/api', \Zend\ProblemDetails\ProblemDetailsMiddleware::class);
 
     $app->pipeDispatchMiddleware();
