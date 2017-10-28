@@ -12,7 +12,7 @@ final class DebugUserService implements UserServiceInterface
 {
     public function getUserWithId(UserId $userId): User
     {
-        return $this->debugUser();
+        return $this->debugUser($userId);
     }
 
     public function getUserForCredentials(Credentials $credentials): User
@@ -20,10 +20,14 @@ final class DebugUserService implements UserServiceInterface
         return $this->debugUser();
     }
 
-    private function debugUser(): User
+    private function debugUser(UserId $userId = null): User
     {
+        if (null === $userId) {
+            $userId = UserId::generate();
+        }
+
         return User::fromArray([
-            'user_id' => UserId::generate()->toString(),
+            'user_id' => $userId->toString(),
         ]);
     }
 }
