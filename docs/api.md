@@ -13,7 +13,7 @@
 
 
 ## Login
-
+POST /api/login
 #### Request
 ```json
 {
@@ -31,7 +31,7 @@
 
 
 ## User Data
-
+GET /api/user
 #### Response
 ```json
 {
