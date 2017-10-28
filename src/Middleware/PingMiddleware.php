@@ -25,7 +25,7 @@ final class PingMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, DelegateInterface $delegate): ResponseInterface
     {
         $resource = $this->resourceGenerator->fromArray([
-            'ack' => (new \DateTime())->format('U.u'),
+            'ack' => (float) (new \DateTime())->format('U.u'),
         ]);
 
         return $this->responseFactory->createResponse($request, $resource);
