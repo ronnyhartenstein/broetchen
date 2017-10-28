@@ -11,12 +11,12 @@ return function (\Zend\Expressive\Application $app) {
     $app->pipeRoutingMiddleware();
 
     $app->pipe(\Oqq\Broetchen\Middleware\AuthenticationMiddleware::class);
+    $app->pipe(\Tuupola\Middleware\Cors::class);
     $app->pipe(\Zend\Expressive\Middleware\ImplicitHeadMiddleware::class);
     $app->pipe(\Zend\Expressive\Middleware\ImplicitOptionsMiddleware::class);
     $app->pipe(\Zend\Expressive\Helper\UrlHelperMiddleware::class);
     $app->pipe(\Zend\Expressive\Helper\BodyParams\BodyParamsMiddleware::class);
 
-    $app->pipe('/api', \Tuupola\Middleware\Cors::class);
     $app->pipe('/api', \Zend\ProblemDetails\ProblemDetailsMiddleware::class);
 
     $app->pipeDispatchMiddleware();
