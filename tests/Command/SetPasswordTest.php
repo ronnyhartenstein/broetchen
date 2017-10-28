@@ -30,7 +30,7 @@ final class SetPasswordTest extends TestCase
     {
         return [
             [['password' => 'pw',
-             'user_id' => Uuid::uuid4()->toString(),]],
+             'user_id' => UserId::generate()->toString(),]],
         ];
     }
 
