@@ -19,6 +19,7 @@
         "psr7-sessions/storageless": "dev-feature/psr-http-middleware",
         "ramsey/uuid": "^3.7",
         "sandrokeil/interop-config": "^2.1",
+        "symfony/var-dumper": "^3.3",
         "zendframework/zend-config-aggregator": "^1.0",
         "zendframework/zend-expressive": "^2.0",
         "zendframework/zend-expressive-fastroute": "^2.1",
