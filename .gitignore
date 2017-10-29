@@ -3,3 +3,4 @@ phpunit.xml
 composer.lock
 .idea
 node_modules
+/simpleapi/vendor/

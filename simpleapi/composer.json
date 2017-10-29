@@ -1,0 +1,21 @@
+{
+  "name": "chemnitzhackt/broetchen",
+  "license": "MIT",
+  "description": "",
+  "require": {
+    "php": "^7.1",
+    "slim/slim": "^3.8",
+    "symfony/var-dumper": "^3.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\Broetchen\\": "src/"
+    }
+  },
+  "config": {
+    "platform": {
+      "php": "7.1"
+    },
+    "sort-packages": true
+  }
+}
