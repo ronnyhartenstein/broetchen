@@ -12,6 +12,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use PSR7Sessions\Storageless\Http\SessionMiddleware;
 use PSR7Sessions\Storageless\Session\SessionInterface;
+use Zend\Diactoros\Response\EmptyResponse;
 
 final class LoginMiddleware implements MiddlewareInterface
 {
@@ -24,11 +25,15 @@ final class LoginMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, DelegateInterface $delegate): ResponseInterface
     {
-//        $values = $request->getParsedBody();
-        $values = json_decode(file_get_contents('php://input'), true);
+        $values = $request->getParsedBody();
 
         $credentials = Credentials::fromArray($values);
-        $user = $this->userService->getUserForCredentials($credentials);
+
+        try {
+            $user = $this->userService->getUserForCredentials($credentials);
+        } catch (\Exception $exception) {
+            return new EmptyResponse(401);
+        }
 
         if (null !== $user) {
             /** @var SessionInterface $session */

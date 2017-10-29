@@ -2985,80 +2985,6 @@
         ]
     },
     {
-        "name": "psr7-sessions/storageless",
-        "version": "dev-feature/psr-http-middleware",
-        "version_normalized": "dev-feature/psr-http-middleware",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/xtreamwayz/psr7-sessions-storageless.git",
-            "reference": "ebb28e636969feaefd0bf46b9e2dd058b153f525"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/xtreamwayz/psr7-sessions-storageless/zipball/ebb28e636969feaefd0bf46b9e2dd058b153f525",
-            "reference": "ebb28e636969feaefd0bf46b9e2dd058b153f525",
-            "shasum": ""
-        },
-        "require": {
-            "dflydev/fig-cookies": "^1.0",
-            "http-interop/http-middleware": "^0.4.1",
-            "lcobucci/jwt": "^3.2",
-            "php": "~7.0",
-            "psr/http-message": "^1.0"
-        },
-        "replace": {
-            "ocramius/psr7-session": "self.version"
-        },
-        "require-dev": {
-            "humbug/humbug": "dev-master",
-            "phpunit/phpunit": "^5.0",
-            "zendframework/zend-diactoros": "^1.1"
-        },
-        "time": "2017-03-23T19:06:16+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "3.0.x-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "PSR7Sessions\\Storageless\\": "src/Storageless"
-            }
-        },
-        "autoload-dev": {
-            "psr-4": {
-                "PSR7SessionsTest\\Storageless\\": "test/StoragelessTest"
-            }
-        },
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Marco Pivetta",
-                "email": "ocramius@gmail.com",
-                "homepage": "http://ocramius.github.io/",
-                "role": "Developer"
-            },
-            {
-                "name": "Jefersson Nathan",
-                "email": "malukenho@phpse.net",
-                "role": "Developer"
-            },
-            {
-                "name": "Luís Otávio Cobucci Oblonczyk",
-                "email": "lcobucci@gmail.com",
-                "role": "Developer"
-            }
-        ],
-        "description": "Storageless PSR-7 Session support",
-        "support": {
-            "source": "https://github.com/xtreamwayz/psr7-sessions-storageless/tree/feature/psr-http-middleware"
-        }
-    },
-    {
         "name": "sandrokeil/interop-config",
         "version": "2.1.0",
         "version_normalized": "2.1.0.0",
@@ -3891,5 +3817,79 @@
             "debug",
             "dump"
         ]
+    },
+    {
+        "name": "psr7-sessions/storageless",
+        "version": "dev-feature/psr-http-middleware",
+        "version_normalized": "dev-feature/psr-http-middleware",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/xtreamwayz/psr7-sessions-storageless.git",
+            "reference": "ebb28e636969feaefd0bf46b9e2dd058b153f525"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/xtreamwayz/psr7-sessions-storageless/zipball/ebb28e636969feaefd0bf46b9e2dd058b153f525",
+            "reference": "ebb28e636969feaefd0bf46b9e2dd058b153f525",
+            "shasum": ""
+        },
+        "require": {
+            "dflydev/fig-cookies": "^1.0",
+            "http-interop/http-middleware": "^0.4.1",
+            "lcobucci/jwt": "^3.2",
+            "php": "~7.0",
+            "psr/http-message": "^1.0"
+        },
+        "replace": {
+            "ocramius/psr7-session": "self.version"
+        },
+        "require-dev": {
+            "humbug/humbug": "dev-master",
+            "phpunit/phpunit": "^5.0",
+            "zendframework/zend-diactoros": "^1.1"
+        },
+        "time": "2017-03-23T19:06:16+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.0.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "PSR7Sessions\\Storageless\\": "src/Storageless"
+            }
+        },
+        "autoload-dev": {
+            "psr-4": {
+                "PSR7SessionsTest\\Storageless\\": "test/StoragelessTest"
+            }
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Marco Pivetta",
+                "email": "ocramius@gmail.com",
+                "homepage": "http://ocramius.github.io/",
+                "role": "Developer"
+            },
+            {
+                "name": "Jefersson Nathan",
+                "email": "malukenho@phpse.net",
+                "role": "Developer"
+            },
+            {
+                "name": "Luís Otávio Cobucci Oblonczyk",
+                "email": "lcobucci@gmail.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "Storageless PSR-7 Session support",
+        "support": {
+            "source": "https://github.com/xtreamwayz/psr7-sessions-storageless/tree/feature/psr-http-middleware"
+        }
     }
 ]

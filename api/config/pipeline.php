@@ -11,6 +11,8 @@ return function (\Zend\Expressive\Application $app) {
 
     $app->pipeRoutingMiddleware();
 
+    $app->pipe( \Zend\ProblemDetails\ProblemDetailsMiddleware::class);
+
     $app->pipe(\Oqq\Broetchen\Middleware\AuthenticationMiddleware::class);
     $app->pipe(\Zend\Expressive\Middleware\ImplicitHeadMiddleware::class);
     $app->pipe(\Zend\Expressive\Middleware\ImplicitOptionsMiddleware::class);

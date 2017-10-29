@@ -28,7 +28,7 @@ final class RegisterMiddleware implements MiddlewareInterface
         
         $createUser = CreateUser::fromArray($values);
         
-        $this->userService->AddUser($createUser);
+        $this->userService->addUser($createUser);
 
         return $delegate->process($request);
     }
