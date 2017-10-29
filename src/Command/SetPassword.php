@@ -5,18 +5,20 @@ declare(strict_types=1);
 namespace Oqq\Broetchen\Command;
 
 use Assert\Assertion;
-use Oqq\Broetchen\Domain\User;
+use Oqq\Broetchen\Domain\User\UserId;
+use Oqq\Broetchen\Domain\User\User;
+use Oqq\Broetchen\Domain\Password;
 
 final class SetPassword
 {
     private $password;
     private $userId;
-    public static function fromArray(array $array): self
+    public static function fromArray(array $values): self
     {
         Assertion::choicesNotEmpty($values, ['password', 'user_id']);
 
-        $password = $values['password'];
-        $userId = UserId::fromString($values['user_id']);
+        $password = Password::fromString( $values['password'] );
+        $userId = UserId::fromString( $values['user_id'] );
 
         return new self($userId, $password);
     }
@@ -26,14 +28,14 @@ final class SetPassword
         return $this->userId;
     }
 
-    public function getPassword(): UserId
+    public function getPassword(): Password
     {
         return $this->password;
     }
 
-    private function __construct(UserId $username, string $password)
+    private function __construct(UserId $userId, Password $password)
     {
-        $this->username = $username;
+        $this->userId = $userId;
         $this->password = $password;
     }
 }
