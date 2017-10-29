@@ -7,6 +7,7 @@ return function (\Zend\Expressive\Application $app) {
     $app->pipe(\Zend\Stratigility\Middleware\ErrorHandler::class);
     $app->pipe(\Zend\Expressive\Helper\ServerUrlMiddleware::class);
     $app->pipe(\PSR7Sessions\Storageless\Http\SessionMiddleware::class);
+    $app->pipe(\LosMiddleware\LosCors\CorsMiddleware::class);
 
     $app->pipeRoutingMiddleware();
 
@@ -16,7 +17,6 @@ return function (\Zend\Expressive\Application $app) {
     $app->pipe(\Zend\Expressive\Helper\UrlHelperMiddleware::class);
     $app->pipe(\Zend\Expressive\Helper\BodyParams\BodyParamsMiddleware::class);
 
-    $app->pipe('/api', \Tuupola\Middleware\Cors::class);
     $app->pipe('/api', \Zend\ProblemDetails\ProblemDetailsMiddleware::class);
 
     $app->pipeDispatchMiddleware();
