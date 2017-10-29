@@ -20,6 +20,10 @@ $app->group('/api', function () use ($app) {
     });
 
     $app->get('/services', function (ServerRequestInterface $request, ResponseInterface $response) {
+        $file = ROOT_DIR.'/db/services.json';
+        if (!file_exists($file)) {
+            copy($file.'.dist', $file);
+        }
         $services = json_decode(file_get_contents(ROOT_DIR.'/db/services.json'), true);
         return $response->withJson($services);
     });
