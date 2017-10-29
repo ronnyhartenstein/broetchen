@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Oqq\Broetchen\Service;
 
-use Oqq\Broetchen\Domain\User\Credentials;
-use Oqq\Broetchen\Domain\User\User;
-use Oqq\Broetchen\Domain\User\UserId;
+use Oqq\Broetchen\Domain\User\{Credentials, User, UserId};
+use Oqq\Broetchen\Command\{CreateUser, SetPassword};
 
 interface UserServiceInterface
 {

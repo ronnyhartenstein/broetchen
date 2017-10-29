@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Oqq\Broetchen\Exception;
 
-class UserNotFoundException extends Exception
+use Oqq\Broetchen\Domain\User\UserId;
+
+class UserNotFoundByIdException extends \Exception
 {
     private $userId;
 
@@ -15,6 +17,6 @@ class UserNotFoundException extends Exception
 
     public  function GetUserId()
     {
-        return $userId;
+        return $this->userId;
     }
 }

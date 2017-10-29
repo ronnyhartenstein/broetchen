@@ -4,21 +4,31 @@ declare(strict_types=1);
 
 namespace Oqq\Broetchen\Service;
 
-use MongoDB;
-use Oqq\Broetchen\Domain;
-use Oqq\Broetchen\Domain\User;
-use Oqq\Broetchen\Exception;
+use MongoDB\Collection;
+use Oqq\Broetchen\Domain\User\{UserId, Credentials, User};
+//use Oqq\Broetchen\Exception;
+use Oqq\Broetchen\Command\{CreateUser, SetPassword};
+use Oqq\Broetchen\Exception\UserNotFoundByEmailException;
+use Oqq\Broetchen\Exception\UserNotFoundByIdException;
 
 class MongoUserService implements UserServiceInterface
 {
+    /** @var Collection */
     private $userCollection;
+    /** @var Collection */
     private $pwHashService;
+
+    public function __construct(Collection $userCollection, PasswordHashService $pwHashService)
+    {
+      $this->userCollection = $userCollection;
+      $this->pwHashService = $pwHashService;
+    }
 
     public function getUserWithId(UserId $userId): User
     {
-        $user = $userCollection->findOne(['user_id' => $userId->toString()]);
+        $user = $this->userCollection->findOne(['user_id' => $userId->toString()]);
 
-        if (!$user->valid()) { throw new UserNotFoundException($userId); } 
+        if (!$user->valid()) { throw new UserNotFoundByIdException($userId); }
         
         return User::fromArray(iterator_to_array( $user ) );
     }
@@ -28,10 +38,10 @@ class MongoUserService implements UserServiceInterface
      */
     public function getUserForCredentials(Credentials $credentials): User
     {
-        $user = $userCollection->findOne(['email_address' => $credentials->emailAddress->toString()]);
+        $user = $this->userCollection->findOne(['email_address' => $credentials->emailAddress()->toString()]);
 
-        if (!$user->valid()) { throw new UserNotFoundException($userId); }
-        if (!$pwHashService->isValid( $credentials->password, $user['password_hash'] )) { throw new UserNotFoundException($userId); }
+        if (!$user->valid()) { throw new UserNotFoundByEmailException($credentials->emailAddress()); }
+        if (!$credentials->password()->isValid($user['password_hash'], $this->pwHashService)) { throw new UserNotFoundByEmailException($credentials->emailAddress()); }
 
         return User::fromArray(iterator_to_array( $user ));        
     }
@@ -41,7 +51,7 @@ class MongoUserService implements UserServiceInterface
      */
     public function AddUser(CreateUser $user) : bool
     {
-        $userCollection->insertOne($user->toArray());
+        $this->userCollection->insertOne($user->toArray());
         return true;
     }
 
@@ -50,17 +60,12 @@ class MongoUserService implements UserServiceInterface
      */
     public function SetPassword(SetPassword $setPw) : bool
     {
-        $user = $userCollection->find(['user_id' => $setPw->getUserId()->toString()]);
-        if (!$user->valid()) { throw new UserNotFoundException($userId); }
+        $user = $this->userCollection->find(['user_id' => $setPw->getUserId()->toString()]);
+        if (!$user->valid()) { throw new UserNotFoundByIdException($setPw->getUserId()); }
         
-        $userCollection->update(['user_id' => $setPw->getUserId()->toString()], ['password_hash' => $setPw->getPassword()->hash($pwHashService)]);
+        $this->userCollection->update(['user_id' => $setPw->getUserId()->toString()], ['password_hash' => $setPw->getPassword()->hash($this->pwHashService)]);
 
         return true;
     }
 
-    public function __construct(MongoDb\ICollection $userCollection, PasswordHashService $pwHashService)
-    {
-        $userCollection = $userCollection;
-        $pwHashService = $pwHashService;
-    }
 }

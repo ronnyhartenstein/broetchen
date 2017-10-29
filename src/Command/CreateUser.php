@@ -44,7 +44,7 @@ final class CreateUser
         return $this->postCode;
     }
 
-    public function username(): EmailAddress
+    public function username(): Username
     {
         return $this->username;
     }
