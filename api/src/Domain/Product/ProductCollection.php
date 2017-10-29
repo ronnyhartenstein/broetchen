@@ -19,7 +19,7 @@ final class ProductCollection
         foreach ($values as $product) {
             $products[] = Product::fromArray($product);
         }
-
+                
         return new self(...$products);
     }
 

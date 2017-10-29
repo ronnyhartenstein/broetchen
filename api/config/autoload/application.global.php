@@ -15,6 +15,7 @@ return [
         'aliases' => [
             \Oqq\Broetchen\Service\PasswordHashService::class => \Oqq\Broetchen\Service\NativePasswordHashService::class,
             \Oqq\Broetchen\Service\UserServiceInterface::class => \Oqq\Broetchen\Service\MongoUserService::class,
+            \Oqq\Broetchen\Service\ServiceServiceInterface::class => \Oqq\Broetchen\Service\MongoServiceService::class,
         ],
         'factories' => [
             \Oqq\Broetchen\Middleware\JsonCommandMiddleware::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
@@ -26,6 +27,10 @@ return [
         \Oqq\Broetchen\Service\MongoUserService::class => [
             'collection.users',
             \Oqq\Broetchen\Service\PasswordHashService::class,
+        ],
+        \Oqq\Broetchen\Service\MongoServiceService::class => [
+            'collection.services',
+            \Oqq\Broetchen\Service\MongoUserService::class
         ],
 
         \Oqq\Broetchen\Middleware\PingMiddleware::class => [
@@ -45,6 +50,12 @@ return [
         ],
         \Oqq\Broetchen\Middleware\RegisterMiddleware::class => [
             \Oqq\Broetchen\Service\UserServiceInterface::class
+        ],
+        \Oqq\Broetchen\Middleware\FindServiceMiddleware::class => [
+            \Oqq\Broetchen\Service\UserServiceInterface::class,
+            \Oqq\Broetchen\Service\MongoServiceService::class,
+            \Zend\Expressive\Hal\ResourceGenerator::class,
+            \Zend\Expressive\Hal\HalResponseFactory::class,
         ],
     ],
 ];
