@@ -1,6 +1,7 @@
 <?php
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use App\User;
 
 $app->group('/api', function () use ($app) {
     $app->post('/login', function (ServerRequestInterface $request, ResponseInterface $response) {
@@ -23,7 +24,7 @@ $app->group('/api', function () use ($app) {
         return $response->withJson($services);
     });
 
-    $app->get('/orders/{session}', function (ServerRequestInterface $request, ResponseInterface $response, $params) {
+    $app->get('/orders/{sessionid}', function (ServerRequestInterface $request, ResponseInterface $response, $params) {
         if (empty($params['sessionid'])) {
             return $response->withJson(['error' => 'Session needed'], 400);
         }
