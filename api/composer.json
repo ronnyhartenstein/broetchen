@@ -1,0 +1,52 @@
+{
+    "name": "oqq/broetchen",
+    "license": "MIT",
+    "description": "",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/xtreamwayz/psr7-sessions-storageless"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "beberlei/assert": "^2.7",
+        "http-interop/http-middleware": "^0.4.0",
+        "los/los-cors": "^1.0",
+        "mongodb/mongodb": "^1.1",
+        "psr/container": "^1.0",
+        "psr/http-message": "^1.0",
+        "psr7-sessions/storageless": "dev-feature/psr-http-middleware",
+        "ramsey/uuid": "^3.7",
+        "sandrokeil/interop-config": "^2.1",
+        "symfony/var-dumper": "^3.3",
+        "zendframework/zend-config-aggregator": "^1.0",
+        "zendframework/zend-expressive": "^2.0",
+        "zendframework/zend-expressive-fastroute": "^2.1",
+        "zendframework/zend-expressive-hal": "^0.4.2",
+        "zendframework/zend-expressive-helpers": "^4.2",
+        "zendframework/zend-hydrator": "^2.3",
+        "zendframework/zend-mail": "^2.8",
+        "zendframework/zend-problem-details": "^0.5.0",
+        "zendframework/zend-servicemanager": "^3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Oqq\\Broetchen\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "OqqTest\\Broetchen\\": "tests/"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "7.1"
+        },
+        "sort-packages": true
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.4"
+    }
+}

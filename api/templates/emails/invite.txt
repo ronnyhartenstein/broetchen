@@ -1,0 +1,14 @@
+Sehr geehrte Nutzerin/ Nutzer
+
+Sie haben einen Einladungscode zur Registrierung auf folgender Seite bekommen:
+
+www.brötchendienst.de
+
+Bitte melden Sie sich mit Ihrem Namen, Adresse , einer Email und Ihrem Passwort an.
+
+
+
+Vielen Dank und freundliche Grüße
+
+
+{{first_name}} {{last_name}}
