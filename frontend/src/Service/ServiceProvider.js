@@ -3,25 +3,15 @@ import {Button, Modal, Table} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import ServiceEditor from './ServiceEditor';
 
+import ApiClient from '../Api/api';
+import fetch from 'isomorphic-fetch';
+
 class ServiceProvider extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            services: [
-                {
-                    id: 1,
-                    name: 'Raphaels Brötchenservice'
-                },
-                {
-                    id: 2,
-                    name: 'Raphaels Mähservice'
-                },
-                {
-                    id: 3,
-                    name: 'Raphaels Einkaufservice'
-                },
-            ],
+            services: [],
             deliveredOrders: [
                 {id: 98},
                 {id: 37},
@@ -29,6 +19,10 @@ class ServiceProvider extends Component {
             ],
             addServiceVisible: false,
         }
+    }
+
+    componentDidMount() {
+        fetch(ApiClient.baseUrl + '/services').then(res => res.json().then(services => {this.setState({services})}));
     }
 
     handleAddService() {

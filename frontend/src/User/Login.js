@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Col, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap';
-import api from '../Api/api';
+import api from '../Api/api'
 
 class Login extends Component {
 
@@ -22,8 +22,10 @@ class Login extends Component {
     }
 
     handleLogin() {
-        this.props.onLoggedIn();
-        //api.login(this.state.username, this.state.password);
+        api.login(this.state.username, this.state.password)
+            .then(response => {
+                this.props.onLoggedIn();
+            });
     }
 
     render() {

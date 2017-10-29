@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
-import {Button, Col, ControlLabel, Form, FormControl, FormGroup, Tab, Table, Tabs, ButtonGroup} from 'react-bootstrap';
+import {Button, ButtonGroup, Col, Form, FormControl, FormGroup, Table} from 'react-bootstrap';
+
+import api from '../Api/api';
+import fetch from 'isomorphic-fetch';
 
 class PlaceServiceOrder extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            // TODO: fetch from backend
             service: {
                 id: 1,
                 name: 'Raphaels Brötchendienst',
@@ -24,8 +28,33 @@ class PlaceServiceOrder extends Component {
                         count: 2,
                     },
                 ]
-            }
+            },
+            ordersByProducts: {}
         };
+    }
+
+    handleChangeOrder(prod, e) {
+        const orders = Object.assign({}, this.state.ordersByProducts);
+        orders[prod.id] = {
+            service: {
+                id: this.state.service.id,
+                name: this.state.service.name,
+            },
+            amount: parseInt(e.target.value)
+        };
+        this.setState({ordersByProducts: orders});
+    }
+
+
+    handleSave() {
+        fetch(api.baseUrl + '/orders',
+            {
+                method: 'post',
+                body: JSON.stringify({
+                    sessionid: '4406a33260d8956e2d95fae136a5ea74',
+                    orders: Object.values(this.state.ordersByProducts)
+                })
+            });
     }
 
     render() {
@@ -67,16 +96,19 @@ class PlaceServiceOrder extends Component {
                     <tbody>
                     {
                         this.state.service.products.map(prod => {
+                            const orders = this.state.ordersByProducts[prod.id];
                             return <tr key={prod.id}>
                                 <td>{prod.name}</td>
                                 <td>{prod.price}</td>
-                                <td><FormControl type='text' value={prod.count} /></td>
+                                <td><FormControl type='text' value={orders && orders.amount}
+                                                 onChange={this.handleChangeOrder.bind(this, prod)}/></td>
                                 <td>0€</td>
                             </tr>
                         })
                     }
                     <tr>
-                        <td colSpan={4}><Button bsStyle='primary'>Bestellen</Button></td>
+                        <td colSpan={4}><Button bsStyle='primary'
+                                                onClick={this.handleSave.bind(this)}>Bestellen</Button></td>
                     </tr>
                     </tbody>
                 </Table>

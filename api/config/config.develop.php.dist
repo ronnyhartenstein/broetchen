@@ -14,10 +14,8 @@ return [
 
     'dependencies' => [
         'aliases' => [
-            \Oqq\Broetchen\Service\UserServiceInterface::class => \Oqq\Broetchen\Service\DebugUserService::class,
         ],
         'factories' => [
-            \Oqq\Broetchen\Service\DebugUserService::class => \Zend\ServiceManager\Factory\InvokableFactory::class,
         ],
     ],
 ];

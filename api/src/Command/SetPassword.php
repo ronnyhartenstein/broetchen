@@ -13,12 +13,13 @@ final class SetPassword
 {
     private $password;
     private $userId;
+
     public static function fromArray(array $values): self
     {
-        Assertion::choicesNotEmpty($values, ['password', 'user_id']);
+        Assertion::choicesNotEmpty($values, ['user_id', 'password']);
 
-        $password = Password::fromString( $values['password'] );
         $userId = UserId::fromString( $values['user_id'] );
+        $password = Password::fromString( $values['password'] );
 
         return new self($userId, $password);
     }

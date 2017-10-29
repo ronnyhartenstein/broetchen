@@ -1,6 +1,8 @@
-/vendor/
-phpunit.xml
+/api/vendor/
+/api/phpunit.xml
 composer.lock
+composer.phar
+*.log
 .idea
 node_modules
 /simpleapi/vendor/
