@@ -35,7 +35,7 @@ final class DebugUserService implements UserServiceInterface
     /* AddUser
      * puts the given user into the database
      */
-    public function AddUser(CreateUser $user) : bool
+    public function addUser(CreateUser $user) : bool
     {
         return true;
     }
@@ -43,7 +43,7 @@ final class DebugUserService implements UserServiceInterface
     /* AddUser
      * puts the given user into the database
      */
-    public function SetPassword(SetPassword $setPw) : bool
+    public function setPassword(SetPassword $setPw) : bool
     {
         return true;
     }
