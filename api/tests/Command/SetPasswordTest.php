@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace OqqTest\Broetchen\Command;
 
 use Oqq\Broetchen\Command\SetPassword;
+use Oqq\Broetchen\Domain\Password;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -21,7 +22,9 @@ final class SetPasswordTest extends TestCase
         $setPassword = SetPassword::fromArray($value);
 
         $this->assertInstanceOf(SetPassword::class, $setPassword);
-        $this->assertEquals($value['user_id'], $setPassword->getUserId()->toString());
+        $this->assertSame($value['user_id'], $setPassword->getUserId()->toString());
+
+        $this->assertInstanceOf(Password::class, $setPassword->getPassword());
     }
 
     public function getValidContents(): array
