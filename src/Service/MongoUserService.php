@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Oqq\Broetchen\Service;
 
-use MongoDB;
-use Oqq\Broetchen\Domain;
-use Oqq\Broetchen\Domain\User;
+use MongoDB\Collection;
+use Oqq\Broetchen\Domain\Credentials;
+use Oqq\Broetchen\Command\CreateUser;
+use Oqq\Broetchen\Command\SetPassword;
 use Oqq\Broetchen\Exception;
 
 class MongoUserService implements UserServiceInterface
@@ -30,8 +31,8 @@ class MongoUserService implements UserServiceInterface
     {
         $user = $userCollection->findOne(['email_address' => $credentials->emailAddress->toString()]);
 
-        if (!$user->valid()) { throw new UserNotFoundException($userId); }
-        if (!$pwHashService->isValid( $credentials->password, $user['password_hash'] )) { throw new UserNotFoundException($userId); }
+        if (!$user->valid()) { throw new UserNotFoundException($credentials->emailAddress); }
+        if (!$credentials->password()->isValid($this->pwHashService, $user['password_hash'])) { throw new UserNotFoundException($credentials->emailAddress); }
 
         return User::fromArray(iterator_to_array( $user ));        
     }

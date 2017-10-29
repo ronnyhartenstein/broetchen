@@ -9,6 +9,7 @@ use Oqq\Broetchen\Domain\City;
 use Oqq\Broetchen\Domain\Postcode;
 use Oqq\Broetchen\Domain\Username;
 use Oqq\Broetchen\Domain\EmailAddress;
+use Oqq\Broetchen\Domain\User\UserId;
 
 final class CreateUser
 {
@@ -16,6 +17,7 @@ final class CreateUser
     private $emailAddress;
     private $postCode;
     private $username;
+    private $userId;
 
     public static function fromArray(array $values): self
     {
@@ -25,8 +27,9 @@ final class CreateUser
         $emailAddress = EmailAddress::fromString($values['email_address']);
         $postCode = Postcode::fromString($values['post_code']);
         $username = Username::fromString($values['username']);
+        $userId = UserId::generate();
 
-        return new self($emailAddress, $username, $postCode, $city);
+        return new self($userId, $emailAddress, $username, $postCode, $city);
     }
 
     public function emailAddress(): EmailAddress
@@ -44,9 +47,14 @@ final class CreateUser
         return $this->postCode;
     }
 
-    public function username(): EmailAddress
+    public function username(): Username
     {
         return $this->username;
+    }
+
+    public function userId(): UserId
+    {
+        return $this->userId;
     }
 
     public function getArrayCopy(): array
@@ -56,14 +64,16 @@ final class CreateUser
             'email_address' => $this->emailAddress->toString(),
             'post_code' => $this->postCode->toString(),
             'username' => $this->username->toString(),
+            'user_id' => $this->userId->toString(),
         ];
     }
 
-    private function __construct(EmailAddress $emailAddress, Username $username, Postcode $postcode, City $city)
+    private function __construct(UserId $userId, EmailAddress $emailAddress, Username $username, Postcode $postcode, City $city)
     {
         $this->emailAddress = $emailAddress;
         $this->city = $city;
         $this->username = $username;
         $this->postCode = $postcode;
+        $this->userId = $userId;
     }
 }
