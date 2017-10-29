@@ -20,6 +20,10 @@ $app->group('/api', function () use ($app) {
     });
 
     $app->get('/services', function (ServerRequestInterface $request, ResponseInterface $response) {
+        $file = ROOT_DIR.'/db/services.json';
+        if (!file_exists($file)) {
+            copy($file.'.dist', $file);
+        }
         $services = json_decode(file_get_contents(ROOT_DIR.'/db/services.json'), true);
         return $response->withJson($services);
     });
@@ -34,7 +38,7 @@ $app->group('/api', function () use ($app) {
             return $response->withJson(['error' => 'User not found'], 401);
         }
 
-        $json = ROOT_DIR.'db/orders-'.$myuser['email'].'.json';
+        $json = ROOT_DIR.'/db/orders-'.$myuser['email'].'.json';
         if (!file_exists($json)) {
             return $response->withJson([]);
         }
@@ -56,7 +60,7 @@ $app->group('/api', function () use ($app) {
         if (!$myuser) {
             return $response->withJson(['error' => 'User not found'], 401);
         }
-        $json = ROOT_DIR.'db/orders-'.$myuser['email'].'.json';
+        $json = ROOT_DIR.'/db/orders-'.$myuser['email'].'.json';
         file_put_contents($json, json_encode($params['orders'], JSON_PRETTY_PRINT));
     });
 });
