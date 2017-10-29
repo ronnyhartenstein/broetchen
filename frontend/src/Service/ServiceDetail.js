@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {Button, Col, ControlLabel, Form, FormControl, FormGroup, Tab, Table, Tabs} from 'react-bootstrap';
 import ServiceEditor from './ServiceEditor';
 
+import ApiClient from '../Api/api';
+import fetch from 'isomorphic-fetch';
+
 class ServiceDetail extends Component {
 
     constructor(props) {
@@ -56,6 +59,8 @@ class ServiceDetail extends Component {
             ],
         };
     }
+
+
 
     handleNewProductNameChange(e) {
         const newProduct = this.state.newProduct;

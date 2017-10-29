@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch';
 class ApiClient {
 
     baseUrl = 'http://localhost:8083/api';
-    
+
     login(username, password) {
         fetch(this.baseUrl + '/login',
             {
