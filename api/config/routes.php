@@ -19,4 +19,9 @@ return function (\Zend\Expressive\Application $app): void {
         \Oqq\Broetchen\Middleware\RegisterMiddleware::class,
         \Oqq\Broetchen\Middleware\JsonCommandMiddleware::class,
     ]);
+
+    $app->get('/api/service/{pattern:.+}', [
+        \Oqq\Broetchen\Middleware\FindServiceMiddleware::class,
+        \Oqq\Broetchen\Middleware\JsonCommandMiddleware::class,
+    ]);
 };
