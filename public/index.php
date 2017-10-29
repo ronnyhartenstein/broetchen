@@ -1,10 +1,11 @@
 <?php
 
-declare(strict_types=1);
+//declare(strict_types=1);
 
 chdir(dirname(__DIR__));
 
 require __DIR__ . '/../vendor/autoload.php';
+
 
 (function (\Interop\Container\ContainerInterface $container) {
     $app = $container->get(\Zend\Expressive\Application::class);

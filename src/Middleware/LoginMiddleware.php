@@ -24,7 +24,8 @@ final class LoginMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, DelegateInterface $delegate): ResponseInterface
     {
-        $values = $request->getParsedBody();
+//        $values = $request->getParsedBody();
+        $values = json_decode(file_get_contents('php://input'), true);
 
         $credentials = Credentials::fromArray($values);
         $user = $this->userService->getUserForCredentials($credentials);
