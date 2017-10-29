@@ -21,13 +21,13 @@ final class CreateUser
 
     public static function fromArray(array $values): self
     {
-        Assertion::choicesNotEmpty($values, ['email_address', 'username', 'post_code', 'city']);
+        Assertion::choicesNotEmpty($values, ['user_id', 'email_address', 'username', 'post_code', 'city']);
 
+        $userId = UserId::fromString($values['user_id']);
         $city = City::fromString($values['city']);
         $emailAddress = EmailAddress::fromString($values['email_address']);
         $postCode = Postcode::fromString($values['post_code']);
         $username = Username::fromString($values['username']);
-        $userId = UserId::generate();
 
         return new self($userId, $emailAddress, $username, $postCode, $city);
     }
@@ -42,7 +42,7 @@ final class CreateUser
         return $this->city;
     }
 
-    public function postCode(): postCode
+    public function postCode(): Postcode
     {
         return $this->postCode;
     }
@@ -60,16 +60,21 @@ final class CreateUser
     public function getArrayCopy(): array
     {
         return [
+            'user_id' => $this->userId->toString(),
             'city' => $this->city->toString(),
             'email_address' => $this->emailAddress->toString(),
             'post_code' => $this->postCode->toString(),
             'username' => $this->username->toString(),
-            'user_id' => $this->userId->toString(),
         ];
     }
 
-    private function __construct(UserId $userId, EmailAddress $emailAddress, Username $username, Postcode $postcode, City $city)
-    {
+    private function __construct(
+        UserId $userId,
+        EmailAddress $emailAddress,
+        Username $username,
+        Postcode $postcode,
+        City $city
+    ) {
         $this->emailAddress = $emailAddress;
         $this->city = $city;
         $this->username = $username;
