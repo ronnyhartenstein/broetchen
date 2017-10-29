@@ -4,3 +4,4 @@ composer.lock
 .idea
 node_modules
 /simpleapi/vendor/
+/simpleapi/db/*.json
