@@ -21,7 +21,7 @@ class ServiceAboOverview extends Component {
                     image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Rasenmaeher.jpg/320px-Rasenmaeher.jpg',
                 },
                 {
-                    id: 2,
+                    id: 3,
                     name: 'Raphaels Zeitungsdienst',
                     description: 'Ich bringe Ihre Zeitung.',
                     image: 'https://upload.wikimedia.org/wikipedia/commons/1/10/A_stack_of_newspapers.jpg',
@@ -37,7 +37,7 @@ class ServiceAboOverview extends Component {
                     <Row>
                         {this.state.abos.map(abo => {
                             return (
-                                <Col xs={6} md={4}>
+                                <Col xs={6} md={4} key={'abo'+abo.id}>
                                     <Thumbnail key={abo.id} src={abo.image}>
                                         <h3>{abo.name}</h3>
                                         <p>{abo.description}</p>
