@@ -10,6 +10,7 @@ return [
 
             'collection.users' => [\Oqq\Broetchen\Container\MongoCollectionFactory::class, 'users'],
             'collection.services' => [\Oqq\Broetchen\Container\MongoCollectionFactory::class, 'services'],
+            'collection.orders' => [\Oqq\Broetchen\Container\MongoCollectionFactory::class, 'orders'],
         ],
     ],
 
