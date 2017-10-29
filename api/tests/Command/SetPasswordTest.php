@@ -4,13 +4,11 @@ declare(strict_types = 1);
 
 namespace OqqTest\Broetchen\Command;
 
-use Ramsey\Uuid\Uuid;
 use Oqq\Broetchen\Command\SetPassword;
-use Oqq\Broetchen\Domain\UserId;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Oqq\Broetchen\Domain\CreateUser
+ * @covers \Oqq\Broetchen\Command\SetPassword
  */
 final class SetPasswordTest extends TestCase
 {
@@ -29,8 +27,12 @@ final class SetPasswordTest extends TestCase
     public function getValidContents(): array
     {
         return [
-            [['password' => 'pw',
-             'user_id' => UserId::generate()->toString(),]],
+            [
+                [
+                    'password' => 'pw',
+                    'user_id' => 'ea50279a-48e3-4548-8468-b17f0ab17271'
+                ]
+            ],
         ];
     }
 
@@ -43,7 +45,7 @@ final class SetPasswordTest extends TestCase
     {
         $this->expectException(\Throwable::class);
 
-        EmailAddress::fromString($value);
+        SetPassword::fromArray($value);
     }
 
     public function getInvalidContents(): array

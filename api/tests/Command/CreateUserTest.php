@@ -21,7 +21,7 @@ final class CreateUserTest extends TestCase
         $createUser = CreateUser::fromArray($value);
 
         $this->assertInstanceOf(CreateUser::class, $createUser);
-        $this->assertEquals($value['post_code'], $createUser->postcode()->toString());
+        $this->assertEquals($value['post_code'], $createUser->postCode()->toString());
         $this->assertEquals($value['email_address'], $createUser->emailAddress()->toString());
         $this->assertEquals($value['username'], $createUser->username()->toString());
         $this->assertEquals($value['city'], $createUser->city()->toString());
@@ -31,10 +31,15 @@ final class CreateUserTest extends TestCase
     public function getValidContents(): array
     {
         return [
-            [['post_code' => '09130',
-             'email_address' => 'ich@aol.com',
-             'username' => 'user',
-             'city' => 'Chemnitz']],
+            [
+                [
+                    'user_id' => 'ea50279a-48e3-4548-8468-b17f0ab17271',
+                    'post_code' => '09130',
+                    'email_address' => 'ich@aol.com',
+                    'username' => 'user',
+                    'city' => 'Chemnitz'
+                ]
+            ],
         ];
     }
 
