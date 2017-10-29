@@ -29,7 +29,8 @@ class PlaceServiceOrder extends Component {
                     },
                 ]
             },
-            ordersByProducts: {}
+            ordersByProducts: {},
+            totalsByProducts: {}
         };
     }
 
@@ -40,9 +41,14 @@ class PlaceServiceOrder extends Component {
                 id: this.state.service.id,
                 name: this.state.service.name,
             },
-            amount: parseInt(e.target.value)
+            amount: parseInt(e.target.value),
+            name: prod.name,
+            id: prod.id,
+            price: prod.price,
         };
-        this.setState({ordersByProducts: orders});
+        const totalsByProducts = Object.assign({}, this.state.totalsByProducts);
+        totalsByProducts[prod.id] = parseInt(e.target.value) * prod.price;
+        this.setState({ordersByProducts: orders, totalsByProducts});
     }
 
 
@@ -69,7 +75,7 @@ class PlaceServiceOrder extends Component {
                             Datum
                         </Col>
                         <Col sm={10}>
-                            <input type='date'/>
+                            <input type='date' value='2017-10-29'/>
                         </Col>
                     </FormGroup>
                     <FormGroup>
@@ -100,9 +106,9 @@ class PlaceServiceOrder extends Component {
                             return <tr key={prod.id}>
                                 <td>{prod.name}</td>
                                 <td>{prod.price}</td>
-                                <td><FormControl type='text' value={orders && orders.amount}
+                                <td><FormControl type='text' value={orders && orders.amount || ''}
                                                  onChange={this.handleChangeOrder.bind(this, prod)}/></td>
-                                <td>0€</td>
+                                <td>{this.state.totalsByProducts[prod.id]} €</td>
                             </tr>
                         })
                     }
