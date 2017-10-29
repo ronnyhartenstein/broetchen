@@ -1,9 +1,0 @@
-Hallo {{first_name}},
-
-{{first_name}} {{last_name}} hat dir eine neue Bestellung geschickt.
-
-Du kannst Sie dir hier anschauen.
-
-www.brötchendienst.de/login
-
-Viel Erfolg.
