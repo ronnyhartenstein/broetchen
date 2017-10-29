@@ -20,7 +20,7 @@ $app->group('/api', function () use ($app) {
     });
 
     $app->get('/services', function (ServerRequestInterface $request, ResponseInterface $response) {
-        $services = json_decode(file_get_contents(ROOT_DIR.'db/services.json'), true);
+        $services = json_decode(file_get_contents(ROOT_DIR.'/db/services.json'), true);
         return $response->withJson($services);
     });
 
