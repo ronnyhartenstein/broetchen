@@ -2,9 +2,8 @@ import fetch from 'isomorphic-fetch';
 
 class ApiClient {
 
-    baseUrl = 'http://10.149.5.41:8083/api';
-    loggedIn = false;
-
+    baseUrl = 'http://localhost:8083/api';
+    
     login(username, password) {
         fetch(this.baseUrl + '/login',
             {
