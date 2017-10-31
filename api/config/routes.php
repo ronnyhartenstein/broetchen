@@ -21,6 +21,5 @@ return function (\Zend\Expressive\Application $app): void {
 
     $app->get('/api/service/{pattern:.+}', [
         \Oqq\Broetchen\Middleware\FindServiceMiddleware::class,
-        \Oqq\Broetchen\Middleware\JsonCommandMiddleware::class,
     ]);
 };
