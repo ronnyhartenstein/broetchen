@@ -52,8 +52,7 @@ return [
             \Oqq\Broetchen\Service\UserServiceInterface::class
         ],
         \Oqq\Broetchen\Middleware\FindServiceMiddleware::class => [
-            \Oqq\Broetchen\Service\UserServiceInterface::class,
-            \Oqq\Broetchen\Service\MongoServiceService::class,
+            \Oqq\Broetchen\Service\ServiceServiceInterface::class,
             \Zend\Expressive\Hal\ResourceGenerator::class,
             \Zend\Expressive\Hal\HalResponseFactory::class,
         ],
