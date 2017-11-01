@@ -30,9 +30,15 @@ final class ServiceTest extends TestCase
             [
                 [
                     'service_id' => 'ff52f6e8-c096-4363-b196-7c31039176ec',
+                    'user_id' => 'ada31364-c3b8-455d-b1c4-73be2bb23348',
                     'name' => 'test',
                     'description' => 'test',
-                    'products' => null,
+                    'products' => [
+                        [
+                            'product_id' => '1c4a118e-0ddb-4798-9040-a364ec690ad3',
+                            'name' => 'test',
+                        ],
+                    ],
                 ],
             ],
         ];
