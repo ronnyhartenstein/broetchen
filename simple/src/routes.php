@@ -74,5 +74,21 @@ $app->group('/api', function () use ($app) {
         }
         $json = ROOT_DIR.'/db/orders-'.$myuser['email'].'.json';
         file_put_contents($json, json_encode($params['orders'], JSON_PRETTY_PRINT));
+
+        /**
+         * Mail versenden
+         */
+        $config = require(ROOT_DIR.'/config.php');
+        $transport = (new Swift_SmtpTransport($config['smtp_server'], $config['smtp_port'], 'ssl'))
+          ->setUsername($config['smtp_user'])
+          ->setPassword($config['smtp_password'])
+          ->setStreamOptions(array('ssl' => array('allow_self_signed' => true, 'verify_peer' => false)));
+        $mailer = new Swift_Mailer($transport);
+        $message = (new Swift_Message('Brötchen Bestellung von '.$myuser['email']))
+          ->setFrom(['rha@mailbox.org' => 'Brötchen Mailer'])
+          ->setTo(['ronny@rh-flow.de'])
+          ->setBody('Hier ist die Bestellung von '.$myuser['email'].': '."\n".print_r($params['orders'],1));
+        $result = $mailer->send($message, $failures);
+        print_r($failures);
     });
 });
