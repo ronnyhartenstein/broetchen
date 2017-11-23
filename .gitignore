@@ -1,4 +1,10 @@
-/vendor/
-phpunit.xml
+api/vendor/
+api/phpunit.xml
 composer.lock
+composer.phar
+*.log
 .idea
+node_modules
+simple/vendor
+simple/db/*.json
+simple/config.php

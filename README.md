@@ -1,15 +1,18 @@
-# Broetchen!
+#Nachbarschaftsdienste WebApp
 
+##Ziel
+Dieses Projekt soll Nachbarschaften unterstützen miteinander in Kontakt zu kommen und untereinander  
+Gefälligkeiten anbieten zu können. Jeder Benutzer kann je nach Neigung und Fähigkeit seinen Nachbarn  
+Hilfe anbieten. 
 
-### How to start?
+Die Angebote sind hierbei explizit auf direkte Nachbarschaften begrenzt. Hierfür geben Nutzer bei der  
+Registrierung Ihre Adresse an. Die Verfügbarkeit aller Angebote und die Sichbarkeit von Suchergebnisen  
+werden dann auf das direkte Umfeld dieser Adresse beschränkt.
 
+Ein Nutzer kann sich auch dafür entscheiden nur bestimmten Personen Dienste anzubieten und diesen eine  
+personalisierte Einladung zukommen lassen. 
 
-```bash
-$ mv config/autoload/session.local.php.dist config/autoload/session.local.php
-$ mv config/config.develop.php.dist config/config.develop.php
-
-$ composer install
-$ docker-compose up web
-
-$ open http://0.0.0.0:8083/api/ping
-```
+##Funktionen
+* Registrierung und Benutzerverwaltung
+* Diensteverwaltung
+* Auftragsübersicht
