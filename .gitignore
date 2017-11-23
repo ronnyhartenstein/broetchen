@@ -1,9 +1,9 @@
-/api/vendor/
-/api/phpunit.xml
+api/vendor/
+api/phpunit.xml
 composer.lock
 composer.phar
 *.log
 .idea
 node_modules
-/simpleapi/vendor/
-/simpleapi/db/*.json
+simple/vendor
+simple/db/*.json
